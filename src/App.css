@@ -38,7 +38,6 @@ body {
 
 .screen {
   grid-column: 1 / -1;
-  color: rgb(243, 243, 243);
   text-align: right;
   padding: 0.5rem;
   font-size: 3rem;
