@@ -11,6 +11,7 @@ body {
   display: grid;
   place-content: center;
   font-family: "Malgun Gothic";
+  font-weight: bold;
   height: 100vh;
   font-size: 1.5rem;
 }
