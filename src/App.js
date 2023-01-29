@@ -60,7 +60,17 @@ const equals = e => {
   }
   let cal;
   switch (operator) {
-
+    case "+" :
+      cal = String(parseFloat(preState) + parseFloat(curState));
+      break;
+    case "X" :
+      cal = String(parseFloat(preState) * parseFloat(curState));
+      break;
+    case "-" :
+      cal = String(parseFloat(preState) - parseFloat(curState));
+      break;
+    default :
+      cal = String(parseFloat(preState) / parseFloat(curState));
   }
   setInput("");
   setPreState(cal);
@@ -83,22 +93,26 @@ const percent = () => {
 
 // 백스페이스 기능
 const backspace = () => {
-
+  if (curState.length == 1) {
+    setCurState("0");
+  } else if (curState.length !== 1) {
+    setCurState(curState.substring(0, curState.length-1));
+  }
 };
 
 // 분모화 기능
 const denominator = () => {
-
+  setCurState(String(1 / parseFloat(curState)));
 };
 
 // 제곱 기능
 const spr = () => {
-
+ setCurState(String(parseFloat(curState) * parseFloat(curState)));
 };
 
 // 루트 기능
 const root = () => {
-
+  setCurState(String(Math.sqrt(parseFloat(curState))));
 };
 
   return (
@@ -106,7 +120,7 @@ const root = () => {
       <div className='wrapper'>
         <div className='historyScreen'></div>
         <div className='screen'>
-          {input}
+          {input !== "" || input === "0" ? input : preState}
         </div>
         <div className='btn light-gray' onClick={percent}>%</div>
         <div className='btn light-gray' onClick={lastReset}>CE</div>
@@ -129,9 +143,9 @@ const root = () => {
         <div className='btn' onClick={inputNum}>3</div>
         <div className='btn light-gray' onClick={operatorType}>+</div>
         <div className='btn' onClick={minusPlus}><i class="fa-solid fa-plus-minus"></i></div>
-        <div className='btn' >0</div>
-        <div className='btn' >.</div>
-        <div className='btn blue' >=</div>
+        <div className='btn' onClick={inputNum}>0</div>
+        <div className='btn' onClick={inputNum}>.</div>
+        <div className='btn blue' onClick={equals}>=</div>
       </div>
     </div>
   );

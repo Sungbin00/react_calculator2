@@ -17,11 +17,12 @@ body {
 }
 
 .container {
-  height: 80vh;
-  width: 40vh;
+  height: 600px;
+  width: 300px;
   background-color: rgb(243, 243, 243);
   border-radius: 5px;
   padding: 1rem;
+  -webkit-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
 }
 
 .wrapper {
@@ -29,7 +30,7 @@ body {
   height: 100%;
   width: 100%;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(6, 1fr);
+  grid-template-rows: repeat(8, 1fr);
   gap: 10px;
 }
 
@@ -52,6 +53,7 @@ body {
   border-radius: 5%;
   color: black;
   cursor: pointer;
+  -webkit-box-shadow: 1px 1px 1px 0px rgba(50, 50, 50, 0.75);
 }
 
 .btn:hover {
