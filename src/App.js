@@ -36,9 +36,10 @@ const allReset = () => {
   setInput("0");
 };
 
-// 마지막 입력 지우는 함수 계산기의 CE 기능
+// 화면을 지우는 함수 계산기의 CE 기능
 const lastReset = () => {
-  setCurState("0");
+  setCurState("");
+  setInput("0");
 };
 
 // 연산자 기능
