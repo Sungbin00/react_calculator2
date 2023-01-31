@@ -1,4 +1,5 @@
 import './App.css';
+import Calculator from './Calculator';
 import { useState, useEffect } from 'react';
 
 function App() {
@@ -94,7 +95,7 @@ const percent = () => {
 
 // 백스페이스 기능
 const backspace = () => {
-  if (curState.length == 1) {
+  if (curState.length === 1) {
     setCurState("0");
   } else if (curState.length !== 1) {
     setCurState(curState.substring(0, curState.length-1));
@@ -116,6 +117,129 @@ const root = () => {
   setCurState(String(Math.sqrt(parseFloat(curState))));
 };
 
+const calculator = [
+  {
+    class: 'btn light-gray',
+    event: percent,
+    element: '%'
+  },
+  {
+    class: 'btn light-gray',
+    event: lastReset,
+    element: 'CE'
+  },
+  {
+    class: 'btn light-gray',
+    event: allReset,
+    element: 'C'
+  },
+  {
+    class: 'btn light-gray',
+    event: backspace,
+    element: <i class="fa-solid fa-delete-left"></i>
+  },
+  {
+    class: 'btn light-gray',
+    event: denominator,
+    element: <p><sup>1</sup>/<sub>x</sub></p>
+  },
+  {
+    class: 'btn light-gray',
+    event: spr,
+    element: <p>x<sup>2</sup></p>
+  },
+  {
+    class: 'btn light-gray',
+    event: root,
+    element: <i class="fa-solid fa-square-root-variable"></i>
+  },
+  {
+    class: 'btn light-gray',
+    event: operatorType,
+    element: <i class="fa-solid fa-divide"></i>
+  },
+  {
+    class: 'btn',
+    event: inputNum,
+    element: '7'
+  },
+  {
+    class: 'btn',
+    event: inputNum,
+    element: '8'
+  },
+  {
+    class: 'btn',
+    event: inputNum,
+    element: '9'
+  },
+  {
+    class: 'btn light-gray',
+    event: operatorType,
+    element: 'X'
+  },
+  {
+    class: 'btn',
+    event: inputNum,
+    element: '4'
+  },
+  {
+    class: 'btn',
+    event: inputNum,
+    element: '5'
+  },
+  {
+    class: 'btn',
+    event: inputNum,
+    element: '6'
+  },
+  {
+    class: 'btn light-gray',
+    event: operatorType,
+    element: '-'
+  },
+  {
+    class: 'btn',
+    event: inputNum,
+    element: '1'
+  },
+  {
+    class: 'btn',
+    event: inputNum,
+    element: '2'
+  },
+  {
+    class: 'btn',
+    event: inputNum,
+    element: '3'
+  },
+  {
+    class: 'btn light-gray',
+    event: operatorType,
+    element: '+'
+  },
+  {
+    class: 'btn',
+    event: minusPlus,
+    element: <i class="fa-solid fa-plus-minus"></i>
+  },
+  {
+    class: 'btn',
+    event: inputNum,
+    element: '0'
+  },
+  {
+    class: 'btn',
+    event: inputNum,
+    element: '.'
+  },
+  {
+    class: 'btn',
+    event: equals,
+    element: '='
+  }
+]
+
   return (
     <div className='container'>
       <div className='wrapper'>
@@ -123,30 +247,7 @@ const root = () => {
         <div className='screen'>
           {input !== "" || input === "0" ? input : preState}
         </div>
-        <div className='btn light-gray' onClick={percent}>%</div>
-        <div className='btn light-gray' onClick={lastReset}>CE</div>
-        <div className='btn light-gray' onClick={allReset}>C</div>
-        <div className='btn light-gray' onClick={backspace}><i class="fa-solid fa-delete-left"></i></div>
-        <div className='btn light-gray' onClick={denominator}><p><sup>1</sup>/<sub>x</sub></p></div>
-        <div className='btn light-gray' onClick={spr}><p>x<sup>2</sup></p></div>
-        <div className='btn light-gray' onClick={root}><i class="fa-solid fa-square-root-variable"></i></div>
-        <div className='btn light-gray' onClick={operatorType}>&divide;</div>
-        <div className='btn' onClick={inputNum}>7</div>
-        <div className='btn' onClick={inputNum}>8</div>
-        <div className='btn' onClick={inputNum}>9</div>
-        <div className='btn light-gray' onClick={operatorType}>X</div>
-        <div className='btn' onClick={inputNum}>4</div>
-        <div className='btn' onClick={inputNum}>5</div>
-        <div className='btn' onClick={inputNum}>6</div>
-        <div className='btn light-gray' onClick={operatorType}>-</div>
-        <div className='btn' onClick={inputNum}>1</div>
-        <div className='btn' onClick={inputNum}>2</div>
-        <div className='btn' onClick={inputNum}>3</div>
-        <div className='btn light-gray' onClick={operatorType}>+</div>
-        <div className='btn' onClick={minusPlus}><i class="fa-solid fa-plus-minus"></i></div>
-        <div className='btn' onClick={inputNum}>0</div>
-        <div className='btn' onClick={inputNum}>.</div>
-        <div className='btn blue' onClick={equals}>=</div>
+        {calculator.map((cal)=>(<Calculator class={cal.class} event={cal.event} element={cal.element}></Calculator>))}
       </div>
     </div>
   );
